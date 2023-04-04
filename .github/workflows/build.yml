@@ -100,3 +100,5 @@ jobs:
           script: |
             microk8s kubectl apply -f kubectl_deployment.yml
     
+# EC_USERNAME: ubuntu
+# EC_PASSWORD: use the private key from your key paire  

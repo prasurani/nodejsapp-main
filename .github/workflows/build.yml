@@ -88,6 +88,7 @@ jobs:
             echo "${{ secrets.KUBECONFIG }}" > ~/.kube/config
             sudo usermod -aG microk8s $USER
             sudo chown -f -R $USER ~/.kube
+            
             sudo systemctl restart snap.microk8s.daemon-apiserver.service
       - name: Deploy Kubernetes cluster
         uses: appleboy/ssh-action@master

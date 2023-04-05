@@ -16,7 +16,7 @@ spec:
         - name: nodejsapp
           image: prasurani1/prasanna:latest # Replace with your Docker image name
           ports:
-            - containerPort: 80 # Replace with the port your Node.js app listens on
+            - containerPort: 4000 # Replace with the port your Node.js app listens on
           resources:
             limits:
               cpu: 500m
@@ -37,4 +37,4 @@ spec:
       port: 80
       targetPort: 4000
       nodePort: 31000
-  type: nodePort 
+  type: NodePort 

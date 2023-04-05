@@ -85,20 +85,7 @@ jobs:
           password: ${{ secrets.EC2_PASSWORD }}
           port: ${{ secrets.EC2_PORT }}
           script: |
-            echo "${{ secrets.KUBECONFIG }}" > ~/.kube/config
-            sudo usermod -aG microk8s $USER
-            sudo chown -f -R $USER ~/.kube
-            
-            # sudo systemctl restart snap.microk8s.daemon-apiserver.service
-      - name: Deploy Kubernetes cluster
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USERNAME }}
-          password: ${{ secrets.EC2_PASSWORD }}
-          port: ${{ secrets.EC2_PORT }}
-          script: |
+            microk8s enable dashboard-proxy
             microk8s kubectl apply -f kubectl_deployment.yml
-    
-# EC_USERNAME: ubuntu
-# EC_PASSWORD: use the private key from your key paire  
+
+            

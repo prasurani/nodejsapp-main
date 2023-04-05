@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: nodejsapp
-          image: prasurani1/prasanna:v1.0 # Replace with your Docker image name
+          image: prasurani1/prasanna:latest # Replace with your Docker image name
           ports:
             - containerPort: 80 # Replace with the port your Node.js app listens on
           resources:
@@ -35,6 +35,6 @@ spec:
     - name: http
       protocol: TCP
       port: 80
-      # targetPort: 4000 # Replace with the port your Node.js app listens on
+      targetPort: 4000
       nodePort: 31000
-  # type: LoadBalancer # Use LoadBalancer for cloud deployments or NodePort for local development
+  type: nodePort 

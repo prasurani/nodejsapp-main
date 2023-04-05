@@ -87,7 +87,7 @@ jobs:
           script: |
             microk8s start  
             microk8s dashboard --repository="https://github.com/ubuntu/microk8s"
-            microk8s kubectl apply -f /github/workspace/kubectl_deployment.yml
+            microk8s kubectl apply -f /https://github.com/prasurani/nodejsapp-main/blob/master/kubectl_deployment.yml
 
 
             

@@ -72,22 +72,17 @@ jobs:
 
     #************ KUBERNETES STAGE 4 ******************#
 
-  deploy: 
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Log in to EC2 instance
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USERNAME }}
-          password: ${{ secrets.EC2_PASSWORD }}
-          port: ${{ secrets.EC2_PORT }}
-          run: |
-            microk8s start  
-            microk8s dashboard --repository="https://github.com/ubuntu/microk8s"
-            microk8s kubectl apply -f kubectl_deployment.yml
+    - name: Log in to EC2 instance
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USERNAME }}
+        password: ${{ secrets.EC2_PASSWORD }}
+        port: ${{ secrets.EC2_PORT }}
+        run: |
+          microk8s start  
+          microk8s dashboard --repository="https://github.com/ubuntu/microk8s"
+          microk8s kubectl apply -f kubectl_deployment.yml
 
 
             

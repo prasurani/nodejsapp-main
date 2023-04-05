@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: nodejsapp
-          image: prasurani1/prasanna:54d2b62dca07e65f18795cfbf9ed11f2348d1cf8 # Replace with your Docker image name
+          image: prasurani1/prasanna:v1.0 # Replace with your Docker image name
           ports:
             - containerPort: 80 # Replace with the port your Node.js app listens on
           resources:

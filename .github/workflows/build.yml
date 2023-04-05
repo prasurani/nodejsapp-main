@@ -85,6 +85,7 @@ jobs:
           password: ${{ secrets.EC2_PASSWORD }}
           port: ${{ secrets.EC2_PORT }}
           script: |
+            microk8s start
             microk8s enable dashboard-proxy
             microk8s kubectl apply -f kubectl_deployment.yml
 

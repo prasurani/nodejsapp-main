@@ -84,13 +84,13 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           password: ${{ secrets.EC2_PASSWORD }}
           port: ${{ secrets.EC2_PORT }}
+      ########### added #####################
       
-      - name: Grant persmissions to deployment file
-        run: chmod +x kubectl_deployment.yml
-          script: |
-            microk8s start  
-            microk8s dashboard --repository="https://github.com/ubuntu/microk8s"
-            microk8s kubectl apply -f kubectl_deployment.yml
+        run: |
+          microk8s start  
+          microk8s dashboard --repository="https://github.com/ubuntu/microk8s"
+          chmod +x kubectl_deployment.yml
+          microk8s kubectl apply -f kubectl_deployment.yml
 
 
             

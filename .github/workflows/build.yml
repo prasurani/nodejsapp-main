@@ -84,10 +84,11 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           password: ${{ secrets.EC2_PASSWORD }}
           port: ${{ secrets.EC2_PORT }}
-        script: |
-          microk8s start  
-          microk8s dashboard --repository="https://github.com/ubuntu/microk8s"
-          microk8s kubectl apply -f kubectl_deployment.yml
+          script: |
+            microk8s start  
+            microk8s dashboard --repository="https://github.com/ubuntu/microk8s"
+            microk8s enable storage
+            microk8s kubectl apply -f kubectl_deployment.yml
 
 
             

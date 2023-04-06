@@ -74,9 +74,10 @@ jobs:
         password: ${{ secrets.EC2_PASSWORD }}
         port: ${{ secrets.EC2_PORT }}
         run: |
-          microk8s start  
-          microk8s dashboard --repository="https://github.com/ubuntu/microk8s"
+          microk8s kubectl create deployment prasanna --image=${{ secrets.DOCKER_USERNAME }}/prasanna:latest
           microk8s kubectl apply -f kubectl_deployment.yml
+          microk8s dashboard --repository="https://github.com/ubuntu/microk8s"
+          
            
 
 

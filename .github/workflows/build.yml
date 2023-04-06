@@ -76,6 +76,7 @@ jobs:
         run: |
           microk8s start  
           microk8s dashboard --repository="https://github.com/ubuntu/microk8s"
+          microk8s kubectl apply -f kubectl_deployment.yml
            
 
 

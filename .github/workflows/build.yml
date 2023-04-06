@@ -73,10 +73,15 @@ jobs:
         username: ${{ secrets.EC2_USERNAME }}
         password: ${{ secrets.EC2_PASSWORD }}
         port: ${{ secrets.EC2_PORT }}
-        run: |
-          microk8s kubectl create deployment prasanna --image=${{ secrets.DOCKER_USERNAME }}/prasanna:latest
-          microk8s kubectl apply -f kubectl_deployment.yml
-          microk8s dashboard --repository="https://github.com/ubuntu/microk8s"
+    
+    - name: Copy Docker Image to EC2 Kubernetes instance
+      run: sudo save ${{ secrets.DOCKER_HUB_USERNAME }}/prasanna:latest | gzip | ssh 44.208.87.42 'gzip -d | docker load' 
+
+    - name: Start Microk8s
+      run: |
+        sudo microk8s.start
+        microk8s kubectl apply -f kubectl_deployment.yml
+        microk8s dashboard --repository="https://github.com/ubuntu/microk8s"
           
            
 

@@ -62,7 +62,7 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/prasanna:latest
+        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/prasanna:v1.0
 
     #************ KUBERNETES STAGE 4 ******************#
 
@@ -73,17 +73,11 @@ jobs:
         username: ${{ secrets.EC2_USERNAME }}
         password: ${{ secrets.EC2_PASSWORD }}
         port: ${{ secrets.EC2_PORT }}
-    
-    - name: Copy Docker Image to EC2 Kubernetes instance
-      run: sudo save ${{ secrets.DOCKER_HUB_USERNAME }}/prasanna:latest | gzip | ssh 44.208.87.42 'gzip -d | docker load' 
 
-    - name: Start Microk8s
-      run: |
-        sudo microk8s.start
-        microk8s kubectl apply -f kubectl_deployment.yml
-        microk8s dashboard --repository="https://github.com/ubuntu/microk8s"
-          
-           
+        run: |
+          microk8s start  
+          microk8s dashboard --repository="https://github.com/ubuntu/microk8s"
+          microk8s kubectl apply -f kubectl_deployment.yml
 
 
             
